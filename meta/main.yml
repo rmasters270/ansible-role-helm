@@ -1,5 +1,6 @@
 galaxy_info:
   author: rmasters270
+  role_name: helm
   description: Install Helm package manager for Kubernetes
   company: none
   license: MIT
