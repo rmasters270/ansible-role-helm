@@ -1,0 +1,27 @@
+---
+
+- include_tasks: macosx.yml
+  when: ansible_distribution == 'MacOSX'
+
+- include_tasks: debian.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Install Helm Diff
+  kubernetes.core.helm_plugin:
+    plugin_path: '{{ helm_diff_plugin_path }}'
+
+- name: Add helm repos
+  kubernetes.core.helm_repository:
+    name: '{{ item.key }}'
+    repo_url: '{{ item.value.url }}'
+  loop: '{{ helm_repository | dict2items }}'
+  when: helm_repository is defined
+
+- name: Update Helm repository cache
+  kubernetes.core.helm:
+    name: update-repo
+    namespace: kube-system
+    state: absent
+    update_repo_cache: true
+  register: _update_helm
+  failed_when: not 'no repositories found' in _update_helm.stderr

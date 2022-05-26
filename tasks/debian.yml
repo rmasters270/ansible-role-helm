@@ -1,0 +1,18 @@
+---
+
+- name: Install Helm apt certificate
+  ansible.builtin.apt_key:
+    url: '{{ helm_repo_certificate }}'
+  become: true
+
+- name: Add Helm apt repository
+  ansible.builtin.apt_repository:
+    repo: '{{ helm_repo }}'
+    filename: helm-stable-debian
+  become: true
+
+- name: Install Helm Apt packages for Debian/Ubuntu
+  ansible.builtin.apt:
+    name: helm
+    update_cache: true
+  become: true

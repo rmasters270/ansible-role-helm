@@ -1,0 +1,18 @@
+galaxy_info:
+  author: rmasters270
+  description: Install Helm package manager for Kubernetes
+  company: none
+  license: MIT
+  min_ansible_version: '2.1'
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+    - name: MacOSX
+      versions:
+        - all
+
+  galaxy_tags: [kubernetes, k3s, helm]
+
+dependencies: []

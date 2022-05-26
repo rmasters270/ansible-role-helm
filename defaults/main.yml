@@ -1,0 +1,9 @@
+---
+
+helm_repo_certificate: https://baltocdn.com/helm/signing.asc
+helm_repo: deb https://baltocdn.com/helm/stable/debian all main
+helm_diff_plugin_path: https://github.com/databus23/helm-diff
+
+# helm_repository:
+#   name:
+#     url:
