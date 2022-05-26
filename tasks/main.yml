@@ -24,4 +24,6 @@
     state: absent
     update_repo_cache: true
   register: _update_helm
-  failed_when: not 'no repositories found' in _update_helm.stderr
+  failed_when:
+    - not 'no repositories found' in _update_helm.stderr
+    - not _update_helm.stderr == ''
